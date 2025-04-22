@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { ErrorObject, PGModel, ResponseBody } from "../lib";
 import { v4 as uuidv4 } from "uuid";
-import { createToken } from "../middelware/auth";
+import { createToken, AuthenticatedRequest } from "../middelware/auth";
 
 interface UserFromDB {
   id: string;
@@ -23,6 +23,7 @@ interface OrderRequestBody {
 interface OrderedItemSummary {
   id: number;
   name: string;
+  userId: string,
   ordered: number;
   remaining: number;
   pricePerUnit: number;
@@ -108,10 +109,7 @@ const viewGrocery = async (req: Request, res: Response) => {
   }
 };
 
-const placeOrder = async (
-  req: Request<{}, {}, OrderRequestBody>,
-  res: Response
-) => {
+const placeOrder = async (req: AuthenticatedRequest & { body: OrderRequestBody }, res: Response) => {
   try {
     await PGModel.query("BEGIN");
     const { items } = req.body;
@@ -153,6 +151,7 @@ const placeOrder = async (
 
       orderSummary.push({
         id: grocery.id,
+        userId: req.user!.id,
         name: grocery.name,
         ordered: quantity,
         remaining: updatedStock,

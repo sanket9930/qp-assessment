@@ -10,7 +10,7 @@ interface TokenPayload {
   [key: string]: any;
 }
 
-interface AuthenticatedRequest extends Request {
+export interface AuthenticatedRequest extends Request {
   user?: TokenPayload;
 }
 
