@@ -1,38 +1,45 @@
-Problem Statement:
-Design a Grocery Booking API:
-Roles:
-- Admin
-- User
+# 🛒 Grocery Booking API – qp-assessment
 
- 
-Mandatory Requirements:
-If you have applied for Fullstack Node position, please use typescript. 
+A TypeScript-based RESTful API that allows **Admins** to manage groceries and **Users** to place grocery orders. Built with **Node.js**, **Express**, and **PostgreSQL**, and containerized using **Docker** for streamlined deployment.
 
-Design API endpoints
-1. Admin Responsibilities:
-   - Add new grocery items to the system
-   - View existing grocery items
-   - Remove grocery items from the system
-   - Update details (e.g., name, price) of existing grocery items
-   - Manage inventory levels of grocery items
-2. User Responsibilities:
-   - View the list of available grocery items
-   - Ability to book multiple grocery items in a single order
-Advanced Challenge:
-- Containerize the application using Docker for ease of deployment and scaling.
-Database:
-- Use any relational database of your choice.
-How to submit the code?
-Create a new GitHub repository with name : qp-assessment
-Once you are ready with the code, you can come back on this URL to submit the GitHub Repo Link. 
+---
 
+## Tech Stack
 
-.env structue 
+- **Backend**: Node.js (v18), Express.js
+- **Language**: TypeScript
+- **Database**: PostgreSQL (hosted on Railway)
+- **Auth**: JWT
+- **Containerization**: Docker
+- **ORM**: Raw SQL (via pg)
 
-CONNECTION_STRING
-CORS_ORIGIN
-CORS_METHODS
-TOKEN_TIME
-JWT_PRIVATE
-JWT_PUBLIC
-JWT_SECRET
+---
+
+## Features
+
+- User Registration and Login with JWT-based Authentication
+- Role-based Access Control (Admin & User)
+- Add, Update, View, and Delete Grocery Items (Admin)
+- Maintain and Update Inventory
+- Users can view grocery list
+- Users can place multi-item grocery orders
+- Orders include total cost and timestamp
+- Full Docker support for containerized deployment
+- PostgreSQL integration with Railway
+
+---
+
+Environment Variables
+
+CONNECTION_STRING=your_postgres_connection_string
+CORS_ORIGIN=http://localhost:3000
+CORS_METHODS=GET,POST,PUT,DELETE
+TOKEN_TIME=1h
+JWT_PRIVATE=your_private_key
+JWT_PUBLIC=your_public_key
+JWT_SECRET=your_jwt_secret
+PORT=3000
+
+Author
+Developed for the Fullstack Node.js position as part of the QP Assessment.
+Made with Express and TypeScript.
